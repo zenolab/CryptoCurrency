@@ -11,10 +11,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zenolab.ax.cryptocurrencyexchanges.R;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoActivityComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoFragmentComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoRootComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoFragmentComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoActivityMvpModule;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoFragmentContextModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ActivityContext;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ApplicationContext;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.CryptoActivityContract;
@@ -30,7 +36,8 @@ public class CryptoFragment extends Fragment implements CryptoActivityContract.V
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    CryptoActivityComponent cryptoActivityComponent;
+
+    CryptoFragmentComponent cryptoFragmentComponent;
 
     @Inject
     public RecyclerViewAdapter recyclerViewAdapter;
@@ -75,21 +82,22 @@ public class CryptoFragment extends Fragment implements CryptoActivityContract.V
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        CryptoRootComponent applicationComponent = AppCore.get(getActivity()).getCryptoRootComponent();
-//        cryptoActivityComponent = DaggerCryptoFragmentComponent.builder()
-//                .cryptoActivityContextModule(new CryptoActivityContextModule(getActivity()))
-//                .cryptoActivityMvpModule(new CryptoActivityMvpModule(this))
-//                .applicationComponent(applicationComponent)
-//                .build();
-//
-//        cryptoActivityComponent.injectCryptoFragment(this);
-//
-//        recyclerView = view.findViewById(R.id.recycler_view);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(activityContext));
-//        recyclerView.setAdapter(recyclerViewAdapter);
-//        progressBar = view.findViewById(R.id.progressBar);
-//
-//        presenter.loadData();
+
+        CryptoRootComponent applicationComponent = AppCore.getF(this).getCryptoRootComponent();
+        cryptoFragmentComponent = DaggerCryptoFragmentComponent.builder()
+                .cryptoFragmentContextModule(new CryptoFragmentContextModule(this))
+                .cryptoActivityMvpModule(new CryptoActivityMvpModule(this))
+                .applicationComponent(applicationComponent)
+                .build();
+
+       // cryptoFragmentComponent.injectCryptoFragment(this);
+
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activityContext));
+        recyclerView.setAdapter(recyclerViewAdapter);
+        progressBar = view.findViewById(R.id.progressBar);
+
+        presenter.loadData();
     }
 
     @Override

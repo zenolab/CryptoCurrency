@@ -4,8 +4,6 @@ import android.content.Context;
 
 
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.ComponentInjector;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.MyApplication;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.ContextModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.RetrofitModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ApplicationContext;
@@ -27,5 +25,4 @@ public interface CryptoRootComponent {
 
     void injectApplication(AppCore appCore);
 
-    void injectComponentInjector(ComponentInjector componentInjector);
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.fragment.app.Fragment;
+
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoRootComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoRootComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.ContextModule;
@@ -26,28 +28,32 @@ public class AppCore extends Application {
         componentsHolder = new ComponentsHolder(this);
         componentsHolder.init();
 
-       // initCryptoComponent();
+        initCryptoComponent();
     }
 
     public ComponentsHolder getComponentsHolder() {
         return componentsHolder;
     }
 
-//    private void initCryptoComponent() {
-//        cryptoRootComponent = DaggerCryptoRootComponent
-//                .builder()
-//                .contextModule(new ContextModule(this))
-//                .build();
-//
-//        cryptoRootComponent.injectApplication(this);
-//    }
-//
-//
-//    public static AppCore get(Activity activity){
-//        return (AppCore) activity.getApplication();
-//    }
-//
-//    public CryptoRootComponent getCryptoRootComponent() {
-//        return cryptoRootComponent;
-//    }
+    private void initCryptoComponent() {
+        cryptoRootComponent = DaggerCryptoRootComponent
+                .builder()
+                .contextModule(new ContextModule(this))
+                .build();
+
+        cryptoRootComponent.injectApplication(this);
+    }
+
+
+    public static AppCore get(Activity activity){
+        return (AppCore) activity.getApplication();
+    }
+
+    public static AppCore getF(Fragment fragment){
+        return (AppCore) fragment.getActivity().getApplication();
+    }
+
+    public CryptoRootComponent getCryptoRootComponent() {
+        return cryptoRootComponent;
+    }
 }

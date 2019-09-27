@@ -37,11 +37,11 @@ public class ScrollingActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 showNews();
-                replaceFragment(new CryptoFragment());
+               // replaceFragment(new CryptoFragment());
             }
         });
          showCryptoList();
-        // replaceFragment(new CryptoFragment());
+         replaceFragment(new CryptoFragment());
     }
 
     public void replaceFragment(Fragment fragment) {

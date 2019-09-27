@@ -29,7 +29,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.zenolab.ax.cryptocurrencyexchanges.InvalidateActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.R;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.ComponentInjector;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoRootComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoActivityComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoActivityComponent;
@@ -87,7 +86,7 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         });
 
 
-        CryptoRootComponent cryptoRootComponent = ComponentInjector.get(this).getCryptoRootComponent();
+        CryptoRootComponent cryptoRootComponent = AppCore.get(this).getCryptoRootComponent();
         cryptoActivityComponent = DaggerCryptoActivityComponent.builder()
                 .cryptoActivityContextModule(new CryptoActivityContextModule(this))
                 .cryptoActivityMvpModule(new CryptoActivityMvpModule(this))

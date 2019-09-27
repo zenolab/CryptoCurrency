@@ -10,18 +10,16 @@ import dagger.Provides;
 
 @Module
 public class CryptoActivityMvpModule {
-    private final CryptoActivityContract.View mView;
+    private final CryptoActivityContract.View view;
 
-
-    public CryptoActivityMvpModule(CryptoActivityContract.View mView) {
-        this.mView = mView;
+    public CryptoActivityMvpModule(CryptoActivityContract.View view) {
+        this.view = view;
     }
 
     @Provides
     @ActivityScope
     CryptoActivityContract.View provideView() {
-        return mView;
+        return view;
     }
-
 
 }
