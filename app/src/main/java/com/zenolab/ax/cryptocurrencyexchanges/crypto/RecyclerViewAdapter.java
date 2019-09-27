@@ -36,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.txtCoin.setText(data.get(position).symbol+" --pos-- "+position);
-        holder.txtCurrentPrice.setText(data.get(position).priceUsd);
+        holder.txtCurrentPrice.setText("$ "+data.get(position).priceUsd);
         holder.txt1HourChange.setText(data.get(position).percentChange1h + "%");
         holder.txt24HourChange.setText(data.get(position).percentChange24h + "%");
         holder.txt7DayChange.setText(data.get(position).percentChange7d + "%");

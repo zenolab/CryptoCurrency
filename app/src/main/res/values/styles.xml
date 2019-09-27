@@ -26,4 +26,9 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <style name="NewsAppBarLayoutTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+
 </resources>
