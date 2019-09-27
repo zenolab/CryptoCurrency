@@ -29,7 +29,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.zenolab.ax.cryptocurrencyexchanges.InvalidateActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.R;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.ApplicationComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.ComponentInjector;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoRootComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoActivityComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoActivityComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoActivityContextModule;
@@ -40,7 +41,6 @@ import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.CryptoActivityContract;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.PresenterImpl;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.pojo.CryptoData;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.util.DividerItemDecoration;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.util.VerticalSpaceItemDecoration;
 import com.zenolab.ax.cryptocurrencyexchanges.news.NewsActivity;
 
 import java.util.List;
@@ -87,11 +87,11 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         });
 
 
-        ApplicationComponent applicationComponent = AppCore.get(this).getApplicationComponent();
+        CryptoRootComponent cryptoRootComponent = ComponentInjector.get(this).getCryptoRootComponent();
         cryptoActivityComponent = DaggerCryptoActivityComponent.builder()
                 .cryptoActivityContextModule(new CryptoActivityContextModule(this))
                 .cryptoActivityMvpModule(new CryptoActivityMvpModule(this))
-                .applicationComponent(applicationComponent)
+                .cryptoRootComponent(cryptoRootComponent)
                 .build();
 
         cryptoActivityComponent.injectCryptoActivity(this);

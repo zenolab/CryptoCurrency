@@ -13,7 +13,8 @@ import dagger.Component;
 
 
 @ActivityScope
-@Component(modules = {AdapterModule.class, CryptoActivityMvpModule.class}, dependencies = ApplicationComponent.class)
+@Component(dependencies = CryptoRootComponent.class,
+           modules = {AdapterModule.class, CryptoActivityMvpModule.class})
 public interface CryptoActivityComponent {
 
     @ActivityContext

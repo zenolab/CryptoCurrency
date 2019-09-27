@@ -4,16 +4,17 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.MyApplication;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.ApplicationComponent;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerApplicationComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoRootComponent;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoRootComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.ContextModule;
 
 public class AppCore extends Application {
 
+    /**Component dependencies*/
+    CryptoRootComponent cryptoRootComponent;
+
+    /**Subcomponents*/
     private ComponentsHolder componentsHolder;
-    //crypto
-    ApplicationComponent applicationComponent;
 
     public static AppCore getApp(Context context) {
         return (AppCore)context.getApplicationContext();
@@ -25,23 +26,28 @@ public class AppCore extends Application {
         componentsHolder = new ComponentsHolder(this);
         componentsHolder.init();
 
-        //crypto
-        applicationComponent = DaggerApplicationComponent.builder().contextModule(new ContextModule(this)).build();
-        //crypto
-        applicationComponent.injectApplication(this);
+       // initCryptoComponent();
     }
 
     public ComponentsHolder getComponentsHolder() {
         return componentsHolder;
     }
 
-    //crypto
-    public static AppCore get(Activity activity){
-        return (AppCore) activity.getApplication();
-    }
-
-    //crypto
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
-    }
+//    private void initCryptoComponent() {
+//        cryptoRootComponent = DaggerCryptoRootComponent
+//                .builder()
+//                .contextModule(new ContextModule(this))
+//                .build();
+//
+//        cryptoRootComponent.injectApplication(this);
+//    }
+//
+//
+//    public static AppCore get(Activity activity){
+//        return (AppCore) activity.getApplication();
+//    }
+//
+//    public CryptoRootComponent getCryptoRootComponent() {
+//        return cryptoRootComponent;
+//    }
 }

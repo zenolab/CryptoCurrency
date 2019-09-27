@@ -39,7 +39,9 @@ public class PinCodeActivityModule implements ActivityModule {
             case CHECK:
                 return new PinCodeCheckPresenter(preferences);
             default:
-                return null;
+                throw new RuntimeException("No matching presenter found "
+                                           + "to create an encapsulated object"
+                                           + " by Dagger2 provider ");
         }
     }
 }

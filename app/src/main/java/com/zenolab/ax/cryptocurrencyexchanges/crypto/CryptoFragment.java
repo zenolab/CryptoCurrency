@@ -11,16 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zenolab.ax.cryptocurrencyexchanges.R;
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.ApplicationComponent;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.CryptoActivityComponent;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component.DaggerCryptoActivityComponent;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoActivityContextModule;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoActivityMvpModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ActivityContext;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ApplicationContext;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.CryptoActivityContract;
@@ -81,7 +75,7 @@ public class CryptoFragment extends Fragment implements CryptoActivityContract.V
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        ApplicationComponent applicationComponent = AppCore.get(getActivity()).getApplicationComponent();
+//        CryptoRootComponent applicationComponent = AppCore.get(getActivity()).getCryptoRootComponent();
 //        cryptoActivityComponent = DaggerCryptoFragmentComponent.builder()
 //                .cryptoActivityContextModule(new CryptoActivityContextModule(getActivity()))
 //                .cryptoActivityMvpModule(new CryptoActivityMvpModule(this))

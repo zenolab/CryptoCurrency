@@ -31,7 +31,10 @@ public class ComponentsHolder {
     }
 
     void init() {
-        appComponent = DaggerAppComponent.builder().appModule(new AppModule(context)).build();
+        appComponent = DaggerAppComponent
+                .builder()
+                .appModule(new AppModule(context))
+                .build();
         appComponent.injectComponentsHolder(this);
         components = new HashMap<>();
     }

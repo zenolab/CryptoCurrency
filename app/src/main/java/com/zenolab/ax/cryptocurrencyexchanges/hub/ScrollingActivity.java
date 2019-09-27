@@ -1,15 +1,21 @@
-package com.zenolab.ax.cryptocurrencyexchanges;
+package com.zenolab.ax.cryptocurrencyexchanges.hub;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.zenolab.ax.cryptocurrencyexchanges.InvalidateActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.R;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoFragment;
 import com.zenolab.ax.cryptocurrencyexchanges.news.NewsActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.View;
 import android.view.Menu;
@@ -31,11 +37,20 @@ public class ScrollingActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 showNews();
+                replaceFragment(new CryptoFragment());
             }
         });
-
          showCryptoList();
+        // replaceFragment(new CryptoFragment());
+    }
 
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameContainer, fragment);
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
     }
 
     private void showNews() {

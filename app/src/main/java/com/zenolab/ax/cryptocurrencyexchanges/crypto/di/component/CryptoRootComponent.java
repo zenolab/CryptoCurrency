@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
+import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.ComponentInjector;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.MyApplication;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.ContextModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.RetrofitModule;
@@ -15,12 +16,16 @@ import dagger.Component;
 
 @ApplicationScope
 @Component(modules = {ContextModule.class, RetrofitModule.class})
-public interface ApplicationComponent {
+public interface CryptoRootComponent {
 
+    //For child
     APIInterface getApiInterface();
 
+    //For child
     @ApplicationContext
     Context getContext();
 
     void injectApplication(AppCore appCore);
+
+    void injectComponentInjector(ComponentInjector componentInjector);
 }
