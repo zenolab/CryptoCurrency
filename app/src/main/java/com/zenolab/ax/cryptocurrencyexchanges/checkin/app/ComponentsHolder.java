@@ -16,7 +16,6 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 
-
 public class ComponentsHolder {
 
     private final Context context;

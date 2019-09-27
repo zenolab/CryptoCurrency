@@ -104,4 +104,8 @@
     <string name="wrong_pin">Wrong PIN</string>
     <string name="no_match">PINs do not match</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pin_code_settings">PIN code settings</string>
+
 </resources>

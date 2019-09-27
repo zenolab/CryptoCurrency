@@ -1,9 +1,11 @@
 package com.zenolab.ax.cryptocurrencyexchanges;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,8 +29,14 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                        showCryptoList();
             }
         });
+
+    }
+
+    private void showCryptoList() {
+        startActivity(new Intent(this, CryptoActivity.class));
     }
 
     @Override
@@ -47,6 +55,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, InvalidateActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

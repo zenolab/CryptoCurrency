@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
-import com.zenolab.ax.cryptocurrencyexchanges.MainActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.InvalidateActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.R;
+import com.zenolab.ax.cryptocurrencyexchanges.ScrollingActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.common.Constants;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.pin.dagger.PinCodeActivityModule;
@@ -234,7 +235,8 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
 
     @Override
     public void next() {
-        startActivity(new Intent(this, MainActivity.class));
+       // startActivity(new Intent(this, InvalidateActivity.class));
+        startActivity(new Intent(this, ScrollingActivity.class));
     }
 
     @Override

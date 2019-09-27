@@ -1,0 +1,26 @@
+package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component;
+
+import android.content.Context;
+
+
+import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.MyApplication;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.ContextModule;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.RetrofitModule;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ApplicationContext;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.scopes.ApplicationScope;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.retrofit.APIInterface;
+
+import dagger.Component;
+
+@ApplicationScope
+@Component(modules = {ContextModule.class, RetrofitModule.class})
+public interface ApplicationComponent {
+
+    APIInterface getApiInterface();
+
+    @ApplicationContext
+    Context getContext();
+
+    void injectApplication(AppCore appCore);
+}
