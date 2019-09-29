@@ -21,11 +21,11 @@
         </activity>
         <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.checkin.pin.mvp.PinCodeActivity" />
         <activity android:name=".InvalidateActivity"></activity>
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoActivity"
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".hub.ScrollingActivity"
+            android:name=".ScrollingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -33,6 +33,19 @@
         <activity
             android:name="com.zenolab.ax.cryptocurrencyexchanges.news.NewsDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+
+
+
+        <!--TEMP-->
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2"></activity>
+        <!--<activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2"-->
+        <!--android:theme="@style/AppTheme.NoActionBar">-->
+        <!--</activity>-->
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <!--END TEMP-->
     </application>
 
 </manifest>

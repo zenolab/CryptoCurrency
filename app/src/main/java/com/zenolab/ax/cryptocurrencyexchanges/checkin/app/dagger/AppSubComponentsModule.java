@@ -10,13 +10,12 @@ import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 
 
-// subcomponents - Для Сабкомпонента доступны все объекты родителя
 @Module(subcomponents = {PinCodeActivityComponent.class})
 public class AppSubComponentsModule {
 
     @Provides
-    @IntoMap //Для того чтобы добавить элемент в Map
-    @ClassKey(PinCodeActivity.class) //Если ключи вашеего Map могут быть ограничены, попробуйте вместо этого использовать пользовательскую аннотацию,член, тип которого {@code Class <? extends Something>}.
+    @IntoMap
+    @ClassKey(PinCodeActivity.class)
     ActivityComponentBuilder provideSplashViewBuilder(PinCodeActivityComponent.Builder builder) {
         return builder;
     }

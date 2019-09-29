@@ -1,4 +1,4 @@
-package com.zenolab.ax.cryptocurrencyexchanges.news.models;
+package com.zenolab.ax.cryptocurrencyexchanges.news_api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

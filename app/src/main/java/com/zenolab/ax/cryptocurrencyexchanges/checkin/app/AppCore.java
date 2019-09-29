@@ -49,10 +49,6 @@ public class AppCore extends Application {
         return (AppCore) activity.getApplication();
     }
 
-    public static AppCore getF(Fragment fragment){
-        return (AppCore) fragment.getActivity().getApplication();
-    }
-
     public CryptoRootComponent getCryptoRootComponent() {
         return cryptoRootComponent;
     }

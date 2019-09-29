@@ -16,17 +16,10 @@ import dagger.Provides;
 public class PinCodeActivityModule implements ActivityModule {
 
     private final Constants.PinCodeMode pinCodeMode;
-   //конструктор
+
     public PinCodeActivityModule(Constants.PinCodeMode pinCodeMode) {
         this.pinCodeMode = pinCodeMode;
     }
-
-    //Для создания презентера тут используется даггер
-    //В зависимости от режима, мы создаем один из трех презентеров.
-    //Это три разных класса, но все они реализуют интерфейс PinCodeContract.Presenter.
-    //А в PinCodeActivity даггер помещает созданный презентер в поле
-    //PinCodeContract.Presenter presenter;
-    //Далее в onCreate мы даем созданному презентеру View (оно же Activity) и сообщаем, что все готово к работе.
 
     @PinCodeActivityScope
     @Provides

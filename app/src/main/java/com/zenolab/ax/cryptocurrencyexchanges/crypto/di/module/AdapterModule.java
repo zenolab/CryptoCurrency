@@ -2,8 +2,8 @@ package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module;
 
 
 
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoActivity;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.RecyclerViewAdapter;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.RecyclerViewAdapter;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.scopes.ActivityScope;
 
 import dagger.Module;

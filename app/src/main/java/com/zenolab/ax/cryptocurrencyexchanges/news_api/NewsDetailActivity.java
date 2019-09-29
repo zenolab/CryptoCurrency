@@ -1,9 +1,8 @@
-package com.zenolab.ax.cryptocurrencyexchanges.news;
+package com.zenolab.ax.cryptocurrencyexchanges.news_api;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +16,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -25,7 +27,9 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.zenolab.ax.cryptocurrencyexchanges.R;
 
-public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class NewsDetailActivity extends AppCompatActivity
+       implements AppBarLayout.OnOffsetChangedListener
+{
 
     private ImageView imageView;
     private TextView appbar_title, appbar_subtitle, date, time, title;
@@ -40,6 +44,8 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+
+        // replaceFragment(new ArticleFragment());
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -171,5 +177,18 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
     }
 }

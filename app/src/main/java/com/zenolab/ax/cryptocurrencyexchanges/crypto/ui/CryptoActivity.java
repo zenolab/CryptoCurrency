@@ -1,4 +1,4 @@
-package com.zenolab.ax.cryptocurrencyexchanges.crypto;
+package com.zenolab.ax.cryptocurrencyexchanges.crypto.ui;
 // https://www.journaldev.com/20654/android-mvp-dagger2-retrofit-rxjava
 //crypto finance
 //api
@@ -11,15 +11,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,18 +45,26 @@ import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ApplicationCon
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.CryptoActivityContract;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.PresenterImpl;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.pojo.CryptoData;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.RecyclerViewAdapter;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.util.DividerItemDecoration;
 import com.zenolab.ax.cryptocurrencyexchanges.news.NewsActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2;
+import com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsFragment;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class CryptoActivity extends AppCompatActivity implements CryptoActivityContract.View, RecyclerViewAdapter.ClickListener {
+public class CryptoActivity extends AppCompatActivity implements CryptoActivityContract.View,
+        RecyclerViewAdapter.ClickListener {
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    CryptoActivityComponent cryptoActivityComponent;
+    private CryptoActivityComponent cryptoActivityComponent;
+    private View layout;
+    private FrameLayout frameLayout;
+    private FloatingActionButton fab;
+    private CoordinatorLayout.LayoutParams params;
 
     @Inject
     public RecyclerViewAdapter recyclerViewAdapter;
@@ -69,19 +83,20 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_crypto);
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        layout =  findViewById(R.id.include_scroll);
+        frameLayout = (FrameLayout) findViewById(R.id.fragmentContainer);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getResources().getString(R.string.load_info), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-               // showCryptoList();
                 showNews();
+                hideFab();
             }
         });
 
@@ -103,17 +118,36 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         progressBar = findViewById(R.id.progressBar);
 
         presenter.loadData();
+    }
 
+    private void hideFab() {
+        params = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        params.setBehavior(null);
+        params.setAnchorId(View.NO_ID);
+        fab.setLayoutParams(params);
+        fab.setVisibility(View.GONE);
+    }
 
+    private void showFab() {
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        params.setBehavior(new FloatingActionButton.Behavior());
+        params.setAnchorId(R.id.appbar);
+        fab.setLayoutParams(params);
     }
 
     private void showNews() {
-        startActivity(new Intent(this, NewsActivity.class));
+        startActivity(new Intent(this, NewsActivity2.class));
     }
-//
-//    private void showCryptoList() {
-//        startActivity(new Intent(this, CryptoActivity.class));
-//    }
+
+    public void replaceFragment(Fragment fragment) {
+        frameLayout.setVisibility(View.VISIBLE);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,7 +163,6 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, InvalidateActivity.class));
             return true;
@@ -140,7 +173,6 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
     @Override
     public void launchIntent(String name) {
         Toast.makeText(mContext, name, Toast.LENGTH_SHORT).show();
-        // startActivity(new Intent(activityContext, DetailActivity.class).putExtra("name", name));
     }
 
     @Override
@@ -166,5 +198,25 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        layout.setVisibility(View.GONE);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        layout.setVisibility(View.VISIBLE);
+        frameLayout.setVisibility(View.GONE);
+
+
+    }
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+         showFab();
     }
 }

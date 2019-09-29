@@ -40,15 +40,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// https://github.com/haerulmuttaqin/PopularNews
 public class NewsActivity extends AppCompatActivity implements  SwipeRefreshLayout.OnRefreshListener{
 
-    //fixedz534@gmail.com
     public static final String API_KEY = "95f2cc20ede9419bbc70851a29363807";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<Article> articles = new ArrayList<>();
-    private Adapter adapter;
+    private NewsAdapter newsAdapter;
     private String TAG = NewsActivity.class.getSimpleName();
     private TextView topHeadline;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -111,9 +109,9 @@ public class NewsActivity extends AppCompatActivity implements  SwipeRefreshLayo
                     }
 
                     articles = response.body().getArticle();
-                    adapter = new Adapter(articles, NewsActivity.this);
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    newsAdapter = new NewsAdapter(articles, NewsActivity.this);
+                    recyclerView.setAdapter(newsAdapter);
+                    newsAdapter.notifyDataSetChanged();
 
                     initListener();
 
@@ -166,7 +164,7 @@ public class NewsActivity extends AppCompatActivity implements  SwipeRefreshLayo
 
     private void initListener(){
 
-        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+        newsAdapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 ImageView imageView = view.findViewById(R.id.img);

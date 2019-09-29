@@ -11,5 +11,4 @@
         android:title="Open with browser"
         app:showAsAction="never" />
 
-
 </menu>

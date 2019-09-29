@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
 import com.zenolab.ax.cryptocurrencyexchanges.R;
-import com.zenolab.ax.cryptocurrencyexchanges.hub.ScrollingActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.ScrollingActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.common.Constants;
 import com.zenolab.ax.cryptocurrencyexchanges.checkin.pin.dagger.PinCodeActivityModule;
@@ -70,28 +70,23 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
         context.startActivity(intent);
     }
 
-//В onCreate вытаскиваем режим PinCodeMode из интента и используем его для создания презентера.
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pincode_activity);
         initView();
 
-        // extract PIN code screen mode from intent
         Constants.PinCodeMode pinCodeMode = (Constants.PinCodeMode)
                 getIntent().getSerializableExtra(Constants.EXTRA_MODE);
 
-        // inject activity
+
         AppCore.getApp(this)
                 .getComponentsHolder()
                 .getActivityComponent(getClass(), new PinCodeActivityModule(pinCodeMode))
                 .inject(this);
 
-        // attach view to presenter
         presenter.attachView(this);
 
-        // view is ready to work
         presenter.viewIsReady();
     }
 
@@ -108,24 +103,17 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
             AppCore.getApp(this).getComponentsHolder().releaseActivityComponent(getClass());
         }
     }
-//========== реализация методов интерфейса PinCodeContract.View ========
+
     @Override
     public void showFirst(int labelResId) {
         // set text to label and show it
         textViewFirstLabel.setText(labelResId);
         textViewFirstLabel.setVisibility(View.VISIBLE);
 
-        // show field
+
         editTextFirstValue.setVisibility(View.VISIBLE);
 
-        // set textChange listener
-        /**
-         * C помощью RxJava (RxBinding) вешаем обработчика для поля ввода,
-         * который будет срабатывать при вводе символов в поле.
-         * Добавляем фильтр, чтобы обработчик срабатывал только, когда поле содержит 4 символа (т.е. полностью заполнено).
-         * И указываем, что обработчику необходимо будет вызвать метод presenter.onTextFirst().
-         * Тем самым мы сообщим презентеру, что пользователь ввел 4 символа в поле и надо что-то делать дальше.
-         */
+
         RxTextView.afterTextChangeEvents(editTextFirstValue)
                 // Затем потребители могли полагаться на систему типов, чтобы гарантировать,
                 // что наблюдаемые будут испускать начальное значение и что они могут пропустить его.
@@ -234,8 +222,8 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
 
     @Override
     public void next() {
-       // startActivity(new Intent(this, InvalidateActivity.class));
         startActivity(new Intent(this, ScrollingActivity.class));
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.zenolab.ax.cryptocurrencyexchanges.news;
+package com.zenolab.ax.cryptocurrencyexchanges.news_api;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

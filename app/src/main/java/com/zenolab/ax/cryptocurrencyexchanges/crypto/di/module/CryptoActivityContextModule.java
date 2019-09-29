@@ -3,7 +3,7 @@ package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module;
 import android.content.Context;
 
 
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.CryptoActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ActivityContext;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.scopes.ActivityScope;
 

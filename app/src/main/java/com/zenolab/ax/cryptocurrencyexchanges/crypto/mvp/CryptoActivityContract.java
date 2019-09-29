@@ -7,7 +7,6 @@ import com.zenolab.ax.cryptocurrencyexchanges.crypto.pojo.CryptoData;
 import java.util.List;
 
 public interface CryptoActivityContract {
-    //------------View----------------
     interface View {
         void showData(List<CryptoData> data);
 
@@ -19,7 +18,6 @@ public interface CryptoActivityContract {
 
         void hideProgress();
     }
-//-------------Presenter----------
     interface Presenter {
         void loadData();
     }
