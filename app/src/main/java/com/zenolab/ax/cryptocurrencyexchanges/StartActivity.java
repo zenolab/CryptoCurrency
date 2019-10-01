@@ -5,9 +5,9 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore;
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.pin.mvp.PinCodeActivity;
-import com.zenolab.ax.cryptocurrencyexchanges.checkin.storage.Preferences;
+import com.zenolab.ax.cryptocurrencyexchanges.checkup.app.AppCore;
+import com.zenolab.ax.cryptocurrencyexchanges.checkup.pin.mvp.PinCodeActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.checkup.storage.Preferences;
 
 public class StartActivity extends AppCompatActivity {
 

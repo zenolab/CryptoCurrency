@@ -3,7 +3,7 @@ package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.component;
 import android.content.Context;
 
 
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.presentation.ui.CryptoActivity;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.AdapterModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module.CryptoActivityMvpModule;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.qualifier.ActivityContext;
@@ -17,7 +17,7 @@ import dagger.Component;
            modules = {AdapterModule.class, CryptoActivityMvpModule.class})
 public interface CryptoActivityComponent {
 
-    @ActivityContext//crypto context pakage
+    @ActivityContext
     Context getContext();
 
     void injectCryptoActivity(CryptoActivity cryptoActivity);

@@ -1,9 +1,7 @@
 package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module;
 
-
-
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.scopes.ActivityScope;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.mvp.CryptoActivityContract;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.presentation.mvp.CryptoActivityContract;
 
 import dagger.Module;
 import dagger.Provides;

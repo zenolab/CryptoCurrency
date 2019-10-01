@@ -1,11 +1,8 @@
 package com.zenolab.ax.cryptocurrencyexchanges.crypto.di.module;
 
-
-
-
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.zenolab.ax.cryptocurrencyexchanges.crypto.di.scopes.ApplicationScope;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.retrofit.APIInterface;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.data.api.APIInterface;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,7 +26,6 @@ public class RetrofitModule {
         return new Retrofit.Builder()
                 .baseUrl("https://api.coinmarketcap.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
-               // .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();

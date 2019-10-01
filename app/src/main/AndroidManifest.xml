@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="com.zenolab.ax.cryptocurrencyexchanges.checkin.app.AppCore"
+        android:name="com.zenolab.ax.cryptocurrencyexchanges.checkup.app.AppCore"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.checkin.pin.mvp.PinCodeActivity" />
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.checkup.pin.mvp.PinCodeActivity" />
         <activity android:name=".InvalidateActivity"></activity>
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity"
+        <activity android:name=".crypto.presentation.ui.CryptoActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
@@ -29,21 +29,21 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news.NewsActivity"></activity>
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_old.NewsActivityOld"></activity>
         <activity
-            android:name="com.zenolab.ax.cryptocurrencyexchanges.news.NewsDetailActivity"
+            android:name="com.zenolab.ax.cryptocurrencyexchanges.news_old.NewsDetailActivityOld"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
-
-
-
         <!--TEMP-->
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2"></activity>
-        <!--<activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2"-->
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news.view.NewsActivity"></activity>
+        <activity android:name="com.zenolab.ax.news.view.NewsActivity"></activity>
+        <!--<activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.view.NewsActivity"-->
         <!--android:theme="@style/AppTheme.NoActionBar">-->
         <!--</activity>-->
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsDetailActivity"
+        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news.view.NewsDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name="com.zenolab.ax.news.view.NewsDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <!--END TEMP-->
     </application>

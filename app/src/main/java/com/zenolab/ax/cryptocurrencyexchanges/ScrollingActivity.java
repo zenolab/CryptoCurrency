@@ -5,11 +5,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.zenolab.ax.cryptocurrencyexchanges.InvalidateActivity;
-import com.zenolab.ax.cryptocurrencyexchanges.R;
-import com.zenolab.ax.cryptocurrencyexchanges.crypto.ui.CryptoActivity;
-import com.zenolab.ax.cryptocurrencyexchanges.news.NewsActivity;
-import com.zenolab.ax.cryptocurrencyexchanges.news_api.NewsActivity2;
+import com.zenolab.ax.cryptocurrencyexchanges.crypto.presentation.ui.CryptoActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,10 +34,8 @@ public class ScrollingActivity extends AppCompatActivity {
          showCryptoList();
     }
 
-
     private void showCryptoList() {
         startActivity(new Intent(this, CryptoActivity.class));
-        finish();
     }
 
     @Override
