@@ -1,5 +1,7 @@
 package com.zenolab.ax.cryptocurrencyexchanges.crypto.presentation.pojo;
 
+import java.util.Objects;
+
 public class CryptoCurrency {
 
     private String id;
@@ -104,5 +106,31 @@ public class CryptoCurrency {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CryptoCurrency)) return false;
+        CryptoCurrency that = (CryptoCurrency) o;
+        return Objects.equals(id, that.id) &&
+               Objects.equals(name, that.name) &&
+               Objects.equals(symbol, that.symbol) &&
+               Objects.equals(rank, that.rank) &&
+               Objects.equals(priceUsd, that.priceUsd) &&
+               Objects.equals(priceBtc, that.priceBtc) &&
+               Objects.equals(_24hVolumeUsd, that._24hVolumeUsd) &&
+               Objects.equals(marketCapUsd, that.marketCapUsd) &&
+               Objects.equals(availableSupply, that.availableSupply) &&
+               Objects.equals(totalSupply, that.totalSupply) &&
+               Objects.equals(percentChange1h, that.percentChange1h) &&
+               Objects.equals(percentChange24h, that.percentChange24h) &&
+               Objects.equals(percentChange7d, that.percentChange7d) &&
+               Objects.equals(lastUpdated, that.lastUpdated);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, symbol, rank, priceUsd, priceBtc, _24hVolumeUsd, marketCapUsd,
+                availableSupply, totalSupply, percentChange1h, percentChange24h, percentChange7d,
+                lastUpdated);
+    }
 }

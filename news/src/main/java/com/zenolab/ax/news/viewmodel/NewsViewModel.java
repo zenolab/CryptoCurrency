@@ -1,5 +1,7 @@
 package com.zenolab.ax.news.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -32,13 +34,19 @@ public class NewsViewModel extends ViewModel {
     public LiveData<NewsResponse> getData(String keyword) {
         if (data == null) {
             data = new MutableLiveData<>();
-            loadData(keyword);
         }
+        loadData(keyword);
         return data;
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        Log.d(LOG_TAG, "on cleared called");
+    }
+
     private void loadData(String keyword) {
-        data = newsUseCase.loadData(Utils.getCountry(),API_KEY,keyword);
+        data = newsUseCase.loadData(Utils.getCountry(),API_KEY,keyword,data);
     }
 
     public void refreshData(String keyword) {

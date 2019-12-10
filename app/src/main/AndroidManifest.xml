@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zenolab.ax.cryptocurrencyexchanges">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.zenolab.ax.cryptocurrencyexchanges.checkup.app.AppCore"
@@ -21,31 +21,34 @@
         </activity>
         <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.checkup.pin.mvp.PinCodeActivity" />
         <activity android:name=".InvalidateActivity"></activity>
-        <activity android:name=".crypto.presentation.ui.CryptoActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity
+            android:name=".crypto.presentation.ui.CryptoActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ScrollingActivity"
+            android:noHistory="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_old.NewsActivityOld"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
         <activity
-            android:name="com.zenolab.ax.cryptocurrencyexchanges.news_old.NewsDetailActivityOld"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name="com.zenolab.ax.news.view.NewsActivity"
+            android:parentActivityName="com.zenolab.ax.cryptocurrencyexchanges.checkup.pin.mvp.PinCodeActivity">
 
+            <!-- Parent activity meta-data to support API level 4+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zenolab.ax.cryptocurrencyexchanges.checkup.pin.mvp.PinCodeActivity" />
 
-        <!--TEMP-->
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news.view.NewsActivity"></activity>
-        <activity android:name="com.zenolab.ax.news.view.NewsActivity"></activity>
-        <!--<activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news_api.view.NewsActivity"-->
-        <!--android:theme="@style/AppTheme.NoActionBar">-->
-        <!--</activity>-->
-        <activity android:name="com.zenolab.ax.cryptocurrencyexchanges.news.view.NewsDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.zenolab.ax.news.view.NewsDetailActivity"
+        </activity>
+
+        <activity
+            android:name="com.zenolab.ax.news.view.NewsDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <!--END TEMP-->
+
+
     </application>
 
 </manifest>

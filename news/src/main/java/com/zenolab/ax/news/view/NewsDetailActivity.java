@@ -135,7 +135,6 @@ public class NewsDetailActivity extends AppCompatActivity
             titleAppbar.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
-
     }
 
 
@@ -157,7 +156,6 @@ public class NewsDetailActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.share) {
             try {
-
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plan");
                 i.putExtra(Intent.EXTRA_SUBJECT, source);
@@ -171,5 +169,8 @@ public class NewsDetailActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
 }

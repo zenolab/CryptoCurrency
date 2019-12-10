@@ -26,7 +26,7 @@ public interface PinCodeContract {
 
         void next();
 
-        void close();
+        void close(boolean flag);
     }
 
     interface Presenter extends MvpPresenter<View> {

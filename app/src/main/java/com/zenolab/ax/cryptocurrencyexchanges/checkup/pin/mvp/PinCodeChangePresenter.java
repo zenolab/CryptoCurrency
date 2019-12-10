@@ -42,7 +42,7 @@ public class PinCodeChangePresenter extends PresenterBase<PinCodeContract.View> 
         if (getView().getTextSecond().equals(getView().getTextThird())) {
             preferences.setPin(getView().getTextSecond());
             getView().showMessage(R.string.pin_changed);
-            getView().close();
+            getView().close(false);
         } else {
             getView().showMessage(R.string.no_match);
             getView().clearAll();

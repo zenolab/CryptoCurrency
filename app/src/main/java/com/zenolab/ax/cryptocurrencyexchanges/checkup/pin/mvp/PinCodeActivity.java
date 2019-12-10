@@ -115,20 +115,16 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
 
 
         RxTextView.afterTextChangeEvents(editTextFirstValue)
-                // Затем потребители могли полагаться на систему типов, чтобы гарантировать,
-                // что наблюдаемые будут испускать начальное значение и что они могут пропустить его.
                 .skipInitialValue()
-                //Предикат - В логике: понятие, определяющее предмет суждения — субъект.(в грамматике:сказуемое)
                 .filter(new Predicate<TextViewAfterTextChangeEvent>() {
                     @Override
                     public boolean test(@NonNull TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) throws Exception {
                         return (textViewAfterTextChangeEvent.editable().toString().length() == 4);
                     }
                 })
-                //Consumer- потребитель - A functional interface (callback) that accepts a single value
+                //Consumer - a functional interface (callback) that accepts a single value
                 .subscribe(new Consumer<TextViewAfterTextChangeEvent>() {
-                    //import io.reactivex.functions.Consumer;
-                    //Consumer is a simple java interface that accepts vatiable of type T
+                    //Consumer is a simple java interface that accepts variable of type T
                     @Override
                     public void accept(@NonNull TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) throws Exception {
                         presenter.onTextFirst();
@@ -227,8 +223,8 @@ public class PinCodeActivity extends AppCompatActivity implements PinCodeContrac
     }
 
     @Override
-    public void close() {
-        finish();
+    public void close(boolean flag) {
+       // if(flag) this.finishAffinity();//exit from app
     }
 
 

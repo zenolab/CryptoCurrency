@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-// could rename to NewsResponse -  as wrapper
+//Response wrapper
 public class NewsResponse {
 
     @SerializedName("status")

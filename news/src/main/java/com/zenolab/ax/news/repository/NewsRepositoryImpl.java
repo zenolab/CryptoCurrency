@@ -28,13 +28,14 @@ public class NewsRepositoryImpl implements NewsRepository<MutableLiveData> {
 
     private NewsApi newsApi;
 
-    public NewsRepositoryImpl() {
+    private NewsRepositoryImpl() {
         newsApi = RetrofitService.createService(NewsApi.class);
     }
 
     @Override
-    public MutableLiveData<NewsResponse> getNews(String source, String key, String keyword) {
-        MutableLiveData<NewsResponse> newsData = new MutableLiveData<>();
+    public MutableLiveData<NewsResponse> getNews(String source, String key, String keyword,
+                                                 MutableLiveData<NewsResponse> newsData) {
+        Log.e(LOG_TAG, "NewsResponse key is "+keyword);
         if (keyword.length() > 0) {
             newsApi.getNewsSearch(keyword, Utils.getLanguage(), "publishedAt", key)
                     .enqueue(new Callback<NewsResponse>() {
@@ -42,7 +43,7 @@ public class NewsRepositoryImpl implements NewsRepository<MutableLiveData> {
                         public void onResponse(Call<NewsResponse> call,
                                                Response<NewsResponse> response) {
                             if (response.isSuccessful() && response.body().getArticle() != null) {
-                                newsData.setValue(response.body());
+                                newsData.postValue(response.body());
                             } else {
                                 String errorCode;
                                 switch (response.code()) {
@@ -62,7 +63,7 @@ public class NewsRepositoryImpl implements NewsRepository<MutableLiveData> {
 
                         @Override
                         public void onFailure(Call<NewsResponse> call, Throwable t) {
-                            newsData.setValue(null);
+                            newsData.postValue(null);
                             Log.e(LOG_TAG, "Network failure");
                         }
                     });
@@ -72,13 +73,13 @@ public class NewsRepositoryImpl implements NewsRepository<MutableLiveData> {
                 public void onResponse(Call<NewsResponse> call,
                                        Response<NewsResponse> response) {
                     if (response.isSuccessful()) {
-                        newsData.setValue(response.body());
+                        newsData.postValue(response.body());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<NewsResponse> call, Throwable t) {
-                    newsData.setValue(null);
+                    newsData.postValue(null);
                 }
             });
         }

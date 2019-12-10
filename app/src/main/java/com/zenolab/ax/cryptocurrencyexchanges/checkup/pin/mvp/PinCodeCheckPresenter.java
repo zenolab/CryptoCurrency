@@ -22,7 +22,7 @@ public class PinCodeCheckPresenter extends PresenterBase<PinCodeContract.View> i
     public void onTextFirst() {
         if (getView().getTextFirst().equals(preferences.getPin())) {
             getView().next();
-            getView().close();
+            getView().close(false);
         } else {
             getView().showMessage(R.string.wrong_pin);
             getView().clearAll();

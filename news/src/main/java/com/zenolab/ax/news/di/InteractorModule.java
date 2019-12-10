@@ -10,14 +10,9 @@ import dagger.Provides;
 @Module
 public class InteractorModule {
 
-
     @Provides
     public NewsUseCase provideNewsUseCaseImpl() {
         return new NewsUseCase();
     }
 
-//    @Provides
-//    public NewsRepositoryImpl provideNewsRepositoryImpl() {
-//        return new NewsRepositoryImpl();
-//    }
 }

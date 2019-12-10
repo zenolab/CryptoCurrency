@@ -31,7 +31,7 @@ public class PinCodeCreatePresenter extends PresenterBase<PinCodeContract.View> 
             preferences.setPin(getView().getTextFirst());
             getView().showMessage(R.string.pin_created);
             getView().next();
-            getView().close();
+            getView().close(false);
         } else {
             getView().showMessage(R.string.no_match);
             getView().clearAll();

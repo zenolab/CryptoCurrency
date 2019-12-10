@@ -43,7 +43,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class CryptoActivity extends AppCompatActivity implements CryptoActivityContract.View,
-        RecyclerViewAdapter.ClickListener {
+        RecyclerViewAdapter.ClickListener{
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -123,8 +123,11 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
     }
 
     private void showNews() {
-        startActivity(new Intent(this, NewsActivity.class));
+        Intent intent = new Intent(CryptoActivity.this, NewsActivity.class);
+        startActivity(intent);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,6 +149,8 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     public void launchIntent(String name) {
@@ -202,4 +207,17 @@ public class CryptoActivity extends AppCompatActivity implements CryptoActivityC
         super.onDestroy();
         presenter.closeSource();
     }
+
+    @Override
+    public void onBackPressed() {
+       exitApp();
+    }
+    void exitApp(){
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        this.startActivity(i);
+    }
+
+
 }

@@ -9,6 +9,7 @@ public interface NewsComponent {
 
     void inject(NewsViewModel newsViewModel);
 
+
    // void inject(NewsUseCase newsUseCase);
 
 }
